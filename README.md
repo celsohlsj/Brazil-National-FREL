@@ -1,5 +1,4 @@
-//[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.3928660.svg)](http://dx.doi.org/10.5281/zenodo.3928660)
-![licence](https://img.shields.io/badge/Licence-GPL--3-blue.svg)
+![licence](https://img.shields.io/badge/Licence-GPL--4-blue.svg)
 ![Github](https://img.shields.io/badge/Github-1.0.0-green.svg)
 
 # Code for Analysis of Emissions in Brazil's National FREL
