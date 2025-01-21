@@ -1,3 +1,7 @@
+//[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.3928660.svg)](http://dx.doi.org/10.5281/zenodo.3928660)
+![licence](https://img.shields.io/badge/Licence-GPL--3-blue.svg)
+![Github](https://img.shields.io/badge/Github-1.0.0-green.svg)
+
 # Code for Analysis of Emissions in Brazil's National FREL
 
 This repository contains the code used to replicate the method of Brazil's National Forest Reference Emission Level (FREL) and analyze greenhouse gas emissions from deforestation and forest degradation for the years 2022 and 2023. The code supports the study:
