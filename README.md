@@ -23,8 +23,8 @@ The following datasets were used:
 ## Repository Structure
 
 - `data/`: Contains example input files (vector and raster formats).
-- `scripts/`: Includes the main scripts for analysis, including data processing in Google Earth Engine.
-- `results/`: Stores generated outputs such as maps and emission charts.
+- `codes/`: Includes the main scripts for analysis, including data processing in Google Earth Engine.
+- `results/`: Stores generated outputs such as charts.
 
 ## Key Features
 
