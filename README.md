@@ -26,13 +26,6 @@ The following datasets were used:
 - `codes/`: Includes the main scripts for analysis, including data processing in Google Earth Engine.
 - `results/`: Stores generated outputs such as charts.
 
-## Key Features
-
-1. Estimates emissions from deforestation and degradation by biome.
-2. Adjusts results to align with Brazil's official FREL values.
-3. Generates maps and charts of annual emissions.
-4. Simulates a modified FREL, incorporating emissions from fires outside managed forest lands and geometric selective logging.
-
 ## Requirements
 
 - **Google Earth Engine:** Scripts are executed in this cloud-based geospatial analysis platform.
