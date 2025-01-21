@@ -22,7 +22,7 @@ The following datasets were used:
 
 ## Repository Structure
 
-- `data/`: Contains example input files (vector and raster formats).
+- `data/`: Contains input files (Google Earth Engine Assets).
 - `codes/`: Includes the main scripts for analysis, including data processing in Google Earth Engine.
 - `results/`: Stores generated outputs such as charts.
 
