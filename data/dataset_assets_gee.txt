@@ -1,1 +1,41 @@
+1. PRODES (Deforestation larger than 6.25 ha)
+   - Asset: projects/ee-ipam/assets/REDD/prodes_brasil_2023
 
+2. PRODES (Deforestation smaller than 6.25 ha)
+   - Asset: projects/ee-ipam/assets/CCAL/DATASETS/PRODES/yearly_deforestation_smaller_than_625ha_biome
+
+3. Managed Forest Lands in Brazil
+   - Asset: projects/ee-ipam/assets/Managed_Land_Brazil
+
+4. Brazil's Biomes delimitation
+   - Asset: projects/mapbiomas-workspace/AUXILIAR/biomas_IBGE_250mil
+
+5. Ancient Forest Vegetation Map of Brazil
+   - Asset: projects/ee-ipam/assets/CCAL/DATASETS/UKPact_MRV/brazil_pret_vegetation_qcn_v2
+
+6. Carbon Map (Aboveground - Amazon biome, 30 m)
+   - Asset: projects/ee-ipam/assets/CCAL/DATASETS/FREL/EBA_AB_30m
+
+7. Carbon Map (Belowground - Amazon biome, 30 m)
+   - Asset: projects/ee-ipam/assets/CCAL/DATASETS/FREL/EBA_BB_30m
+
+8. Carbon Map (Deadwood - Amazon biome, 30 m)
+   - Asset: projects/ee-ipam/assets/CCAL/DATASETS/FREL/EBA_DW_30m
+
+9. Carbon Map (Litter - Amazon biome, 30 m)
+   - Asset: projects/ee-ipam/assets/CCAL/DATASETS/FREL/EBA_LI_30m
+
+10. Carbon Map of the Fourth National GHG Inventory (30 m)
+    - Asset: projects/mapbiomas-workspace/SEEG/2022/QCN/QCN_30m_BR_v2_0_1
+
+11. Disordered Selective Logging Map (2017)
+    - Asset: projects/ee-ipam/assets/CCAL/DATASETS/PRODES/PRODES_ANO_CIVIL/DeterAnoProdes_2017_cs_disordered
+
+12. Fire Map (Annual, Amazon biome, 30 m)
+    - Asset: projects/ee-ipam/assets/CCAL/DATASETS/PRODES/PRODES_ANO_CIVIL/DeterAnoProdes_<year>_fire
+
+13. Selective Logging Map (Annual, Amazon biome, 30 m)
+    - Asset: projects/ee-ipam/assets/CCAL/DATASETS/PRODES/PRODES_ANO_CIVIL/DeterAnoProdes_<year>_cs_disordered
+
+14. Brazil's States plus Biomes delimitation
+    - Asset: projects/ee-ipam/assets/BR_UF_Biomas
