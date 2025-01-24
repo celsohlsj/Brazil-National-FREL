@@ -43,7 +43,7 @@ The following datasets were used:
 ##### or User with access to the repository* can add it to the Code Editor Earth Engine using:
 - **User with access to the repository* can add it to the Code Editor Earth Engine using:
 
-- [- Accept Repository .EE (📂Brazil-National-FREL/code/)]()
+- [- Accept Repository .EE (📂Brazil-National-FREL/code/)](https://code.earthengine.google.com/?accept_repo=users/celsojunior/CCAL_FREL/Brazil-National-FREL/codes)
 - [- Clone the gitRe by running the following command in a terminal: git clone]()
 
 ### Reporting Issues
