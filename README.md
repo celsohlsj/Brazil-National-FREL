@@ -42,8 +42,9 @@ The following datasets were used:
 ### GitClone - Earth Engine (.js)
 ##### or User with access to the repository* can add it to the Code Editor Earth Engine using:
 - **User with access to the repository* can add it to the Code Editor Earth Engine using:
-  [- Accept Repository .EE (📂Brazil-National-FREL/code/)]()
-  [- Clone the gitRe by running the following command in a terminal: git clone]()
+
+- [- Accept Repository .EE (📂Brazil-National-FREL/code/)]()
+- [- Clone the gitRe by running the following command in a terminal: git clone]()
 
 ### Reporting Issues
 For clarification or an issue/bug report, please write to <celso.junior@ipam.org.br> and/or <edriano.souza@ipam.org.br>
