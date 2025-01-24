@@ -20,16 +20,21 @@ The following datasets were used:
 - **Official References:** Brazil's National FREL documents.
 
 
-### How to use
-1. [Create an account](https://signup.earthengine.google.com/) in the Google Earth Engine platform.
-
-2. Download or clone this repository to your local workspace .EE.
 
 ## Repository Structure
 
 - `🗃️data/`: Contains input files (Google Earth Engine Assets).
 - `🛢codes/`: Includes the main scripts for analysis, including data processing in Google Earth Engine.
 - `🔎results/`: Stores generated outputs such as charts.
+
+
+### How to use
+1. [Create an account](https://signup.earthengine.google.com/) in the Google Earth Engine platform.
+2. [`🛢codes/`:](https://github.com/celsohlsj/Brazil-National-FREL/tree/main/codes) Copy Includes the main scripts for analysis, including data processing in Google Earth Engine.
+
+  or
+3. Download or clone this repository to your local workspace .EE
+   
 
 ## Requirements
 
