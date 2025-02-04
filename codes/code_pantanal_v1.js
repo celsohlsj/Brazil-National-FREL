@@ -21,9 +21,9 @@ var prodesDeforestation = prodesGreaterThan625ha
                           .clip(pantanal);
 
 // Carbon Map from FREL National
-var totalCarbon = ee.ImageCollection('projects/mapbiomas-workspace/SEEG/2022/QCN/QCN_30m_BR_v2_0_1')
-                  .select('total')
-                  .mosaic()
+var totalCarbon = ee.Image('projects/ee-ipam/assets/IPAM/QCN/1_Asset_v0-2_img')
+                  .select('TOTAL')
+                  //.mosaic()
                   .unmask(0)
                   .multiply(brazilForests)
                   .clip(pantanal);
