@@ -19,30 +19,30 @@ var prodesDeforestation = prodesGreaterThan625ha
                           .clip(cerrado);
 
 // Carbon Map from FREL National
-var agb = ee.ImageCollection('projects/mapbiomas-workspace/SEEG/2022/QCN/QCN_30m_BR_v2_0_1')
-          .select('cagb')
-          .mosaic()
+var agb = ee.Image('projects/ee-ipam/assets/IPAM/QCN/1_Asset_v0-2_img')
+          .select('AGB')
+          //.mosaic()
           .unmask(0)
           .multiply(brazilForests)
           .clip(cerrado);
 
-var bgb = ee.ImageCollection('projects/mapbiomas-workspace/SEEG/2022/QCN/QCN_30m_BR_v2_0_1')
-          .select('cbgb')
-          .mosaic()
+var bgb = ee.Image('projects/ee-ipam/assets/IPAM/QCN/1_Asset_v0-2_img')
+          .select('BGB')
+          //.mosaic()
           .unmask(0)
           .multiply(brazilForests)
           .clip(cerrado);
 
-var dw = ee.ImageCollection('projects/mapbiomas-workspace/SEEG/2022/QCN/QCN_30m_BR_v2_0_1')
-          .select('cdw')
-          .mosaic()
+var dw = ee.Image('projects/ee-ipam/assets/IPAM/QCN/1_Asset_v0-2_img')
+          .select('CDW')
+          //.mosaic()
           .unmask(0)
           .multiply(brazilForests)
           .clip(cerrado);
 
-var litter = ee.ImageCollection('projects/mapbiomas-workspace/SEEG/2022/QCN/QCN_30m_BR_v2_0_1')
-              .select('clitter')
-              .mosaic()
+var litter = ee.Image('projects/ee-ipam/assets/IPAM/QCN/1_Asset_v0-2_img')
+              .select('LITTER')
+              //.mosaic()
               .unmask(0)
               .multiply(brazilForests)
               .clip(cerrado);
