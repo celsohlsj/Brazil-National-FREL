@@ -44,22 +44,22 @@ var litter1 = ee.Image('projects/ee-ipam/assets/CCAL/DATASETS/FREL/EBA_LI_30m');
 litter1 = litter1.updateMask(litter1.gte(0));
 
 // Carbon Map from FREL National
-var agb = ee.ImageCollection('projects/mapbiomas-workspace/SEEG/2022/QCN/QCN_30m_BR_v2_0_1').select('cagb').mosaic()
+var agb = ee.Image('projects/ee-ipam/assets/IPAM/QCN/1_Asset_v0-2_img').select('AGB')
           .blend(agb1)
           .multiply(brazilForests)
           .clip(amazonia);
     
-var bgb = ee.ImageCollection('projects/mapbiomas-workspace/SEEG/2022/QCN/QCN_30m_BR_v2_0_1').select('cbgb').mosaic()
+var bgb = ee.Image('projects/ee-ipam/assets/IPAM/QCN/1_Asset_v0-2_img').select('BGB')
           .blend(bgb1)
           .multiply(brazilForests)
           .clip(amazonia);
     
-var dw = ee.ImageCollection('projects/mapbiomas-workspace/SEEG/2022/QCN/QCN_30m_BR_v2_0_1').select('cdw').mosaic()
+var dw = ee.Image('projects/ee-ipam/assets/IPAM/QCN/1_Asset_v0-2_img').select('CDW')
           .blend(dw1)
           .multiply(brazilForests)
           .clip(amazonia);
     
-var litter = ee.ImageCollection('projects/mapbiomas-workspace/SEEG/2022/QCN/QCN_30m_BR_v2_0_1').select('clitter').mosaic()
+var litter = ee.Image('projects/ee-ipam/assets/IPAM/QCN/1_Asset_v0-2_img').select('LITTER')
           .blend(litter1)
           .multiply(brazilForests)
           .clip(amazonia);
