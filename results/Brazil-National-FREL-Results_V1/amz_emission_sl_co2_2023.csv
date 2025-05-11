@@ -1,0 +1,10 @@
+system:index,AREA_KM2,Bioma,CD_Bioma,CD_UF,FID_BR_UF_,FID_lm_bio,NM_REGIAO,NM_UF,SIGLA_UF,sum,.geo
+0000000000000000002a,903208.361,Amazônia,1,51,22,0,Centro-oeste,Mato Grosso,MT,9540042.329923676,"{""type"":""MultiPoint"",""coordinates"":[]}"
+00000000000000000029,329651.496,Amazônia,1,21,5,0,Nordeste,Maranhão,MA,25867.108921586943,"{""type"":""MultiPoint"",""coordinates"":[]}"
+0000000000000000002b,237754.172,Amazônia,1,11,25,0,Norte,Rondônia,RO,1518073.7966661856,"{""type"":""MultiPoint"",""coordinates"":[]}"
+0000000000000000002d,164173.429,Amazônia,1,12,0,0,Norte,Acre,AC,747122.546365734,"{""type"":""MultiPoint"",""coordinates"":[]}"
+0000000000000000002e,1559255.881,Amazônia,1,13,1,0,Norte,Amazonas,AM,3267493.5124234133,"{""type"":""MultiPoint"",""coordinates"":[]}"
+00000000000000000030,223644.53,Amazônia,1,14,26,0,Norte,Roraima,RR,325862.1357195829,"{""type"":""MultiPoint"",""coordinates"":[]}"
+0000000000000000002c,1245870.704,Amazônia,1,15,2,0,Norte,Pará,PA,1.0205016023723807E7,"{""type"":""MultiPoint"",""coordinates"":[]}"
+0000000000000000002f,142470.762,Amazônia,1,16,3,0,Norte,Amapá,AP,0.0,"{""type"":""MultiPoint"",""coordinates"":[]}"
+00000000000000000028,277423.627,Amazônia,1,17,4,0,Norte,Tocantins,TO,0.0,"{""type"":""MultiPoint"",""coordinates"":[]}"
