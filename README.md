@@ -1,11 +1,11 @@
 ![licence](https://img.shields.io/badge/Licence-GPL--4-blue.svg)
 ![Github](https://img.shields.io/badge/Github-1.0.0-green.svg)
 
-# Code for Analysis of Emissions in Brazil's National FREL
+# Code for Analysis of Brazil's National FREL Emissions
 
 This repository contains the code used to replicate the method of Brazil's National Forest Reference Emission Level (FREL) and analyze greenhouse gas emissions from deforestation and forest degradation for the years 2022 and 2023. The code supports the study:
 
-**"Increased deforestation and forest degradation in 2022 jeopardize Brazil’s REDD+ results"**
+**"Silva-Junior, C.H.L. et al. Increased deforestation and forest degradation in 2022 jeopardize Brazil’s REDD+ results. 2025. Nature Climate Change."**
 
 ## Objective
 
@@ -15,9 +15,9 @@ The primary goal is to estimate carbon emissions related to deforestation and fo
 
 The following datasets were used:
 
-- **Deforestation:** Data from PRODES (INPE) for annual monitoring of native vegetation suppression.
-- **Forest Degradation:** Data from DETER (INPE) for daily monitoring.
-- **Carbon Stock:** Map from the EBA/INPE Project (Amazon biome) and the 4th National Greenhouse Gas Communication (other biomes).
+- **Deforestation:** PRODES/INPE data for annual monitoring of native vegetation suppression.
+- **Forest Degradation:** DETER/INPE data for daily monitoring.
+- **Carbon Stock:** EBA/INPE Project (Amazon biome) and the 4th National Greenhouse Gas Communication (other biomes) maps.
 - **Official References:** Brazil's National FREL documents.
 
 ## Repository Structure
