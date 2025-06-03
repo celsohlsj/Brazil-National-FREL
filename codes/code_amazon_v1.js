@@ -92,14 +92,15 @@ function calculateCO2Emissions(year) {
                   .clip(amazonia);
   fireYear = mask.blend(fireYear);
       
-  var fireCO2 = agb.multiply(fireYear).multiply(0.368);
+  var fireCO2 = agbDwL.multiply(fireYear).multiply(0.368);
   var fireCH4 = agbDwL.multiply(fireYear).multiply(1/0.47).multiply(0.368).multiply(6.8).multiply(0.001);
   var fireN2O = agbDwL.multiply(fireYear).multiply(1/0.47).multiply(0.368).multiply(0.2).multiply(0.001);
   
   // Updating carbon stock (Fire)
-  agb = agb.subtract(agb.multiply(fireYear).multiply(0.368));
-  agbDwL = agbDwL.subtract(agbDwL.multiply(fireYear).multiply(0.368));
-  
+    agb = agb.subtract(agb.multiply(fireYear).multiply(0.368));
+    dw = dw.subtract(dw.multiply(fireYear).multiply(0.368));
+    litter = litter.subtract(litter.multiply(fireYear).multiply(0.368));
+    
   // Selective Logging Emissions
   var slFactorYear = selectiveLoggingYear.remap([0,1,2,3,4,5,6,7,8,9,10], [0,0.29,0.27,0.26,0.22,0.22,0.22,0.22,0.22,0.22,0.22]);
   
@@ -113,7 +114,8 @@ function calculateCO2Emissions(year) {
   selectiveLoggingYear = selectiveLoggingYear.add(selectiveLoggingYear2).multiply(selectiveLoggingYear2).multiply(brazilForests).clip(amazonia);
   
   // Updating carbon stock (Selective Logging)
-  agb = agb.subtract(slCO2);
+    agb = agb.subtract(slCO2);
+    agbDwL = agb.add(dw).add(litter);
   
   // Deforestation Emissions
   var deforestationYear = prodesDeforestation.eq(year);
