@@ -1,5 +1,5 @@
 system:index,AREA_KM2,Bioma,CD_Bioma,CD_UF,FID_BR_UF_,FID_lm_bio,NM_REGIAO,NM_UF,SIGLA_UF,sum,.geo
-0000000000000000002a,903208.361,Amazônia,1,51,22,0,Centro-oeste,Mato Grosso,MT,1791903.9219628829,"{""type"":""MultiPoint"",""coordinates"":[]}"
+0000000000000000002a,903208.361,Amazônia,1,51,22,0,Centro-oeste,Mato Grosso,MT,1791903.9219628836,"{""type"":""MultiPoint"",""coordinates"":[]}"
 00000000000000000029,329651.496,Amazônia,1,21,5,0,Nordeste,Maranhão,MA,0.0,"{""type"":""MultiPoint"",""coordinates"":[]}"
 0000000000000000002b,237754.172,Amazônia,1,11,25,0,Norte,Rondônia,RO,257800.54361533822,"{""type"":""MultiPoint"",""coordinates"":[]}"
 0000000000000000002d,164173.429,Amazônia,1,12,0,0,Norte,Acre,AC,44576.82752299635,"{""type"":""MultiPoint"",""coordinates"":[]}"

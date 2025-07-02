@@ -1,0 +1,3 @@
+system:index,AREA_KM2,Bioma,CD_Bioma,CD_UF,FID_BR_UF_,FID_lm_bio,NM_REGIAO,NM_UF,SIGLA_UF,sum,.geo
+00000000000000000000,357142.082,Pantanal,6,50,21,5,Centro-oeste,Mato Grosso do Sul,MS,7052659.488263344,"{""type"":""MultiPoint"",""coordinates"":[]}"
+00000000000000000001,903208.361,Pantanal,6,51,22,5,Centro-oeste,Mato Grosso,MT,1114957.8805900319,"{""type"":""MultiPoint"",""coordinates"":[]}"

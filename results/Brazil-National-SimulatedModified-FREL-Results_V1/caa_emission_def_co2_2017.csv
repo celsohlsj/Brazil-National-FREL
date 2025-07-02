@@ -1,0 +1,10 @@
+system:index,AREA_KM2,Bioma,CD_Bioma,CD_UF,FID_BR_UF_,FID_lm_bio,NM_REGIAO,NM_UF,SIGLA_UF,sum,.geo
+00000000000000000003,251755.481,Caatinga,2,22,6,1,Nordeste,Piauí,PI,2062894.618336668,"{""type"":""MultiPoint"",""coordinates"":[]}"
+00000000000000000004,148894.447,Caatinga,2,23,7,1,Nordeste,Ceará,CE,7354933.330414337,"{""type"":""MultiPoint"",""coordinates"":[]}"
+00000000000000000005,52809.599,Caatinga,2,24,8,1,Nordeste,Rio Grande do Norte,RN,1414828.0885688534,"{""type"":""MultiPoint"",""coordinates"":[]}"
+00000000000000000006,56467.242,Caatinga,2,25,9,1,Nordeste,Paraíba,PB,830338.7627246995,"{""type"":""MultiPoint"",""coordinates"":[]}"
+00000000000000000007,98067.877,Caatinga,2,26,10,1,Nordeste,Pernambuco,PE,1706512.6321236384,"{""type"":""MultiPoint"",""coordinates"":[]}"
+00000000000000000008,27830.661,Caatinga,2,27,11,1,Nordeste,Alagoas,AL,632975.7022667596,"{""type"":""MultiPoint"",""coordinates"":[]}"
+00000000000000000009,21938.188,Caatinga,2,28,12,1,Nordeste,Sergipe,SE,801232.2547534801,"{""type"":""MultiPoint"",""coordinates"":[]}"
+0000000000000000000a,564760.429,Caatinga,2,29,13,1,Nordeste,Bahia,BA,1.1871056360396635E7,"{""type"":""MultiPoint"",""coordinates"":[]}"
+0000000000000000000b,586513.983,Caatinga,2,31,14,1,Sudeste,Minas Gerais,MG,1280281.7702413439,"{""type"":""MultiPoint"",""coordinates"":[]}"
