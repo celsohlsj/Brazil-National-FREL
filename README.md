@@ -114,41 +114,6 @@ R script that reads the consolidated Excel file and produces:
 #### `results/join_tool_(gee_export_results)_v1.R` — Results consolidator
 Reads all 98 CSV files exported by GEE, parses the filename to extract metadata (biome, disturbance, gas, year), and writes a single consolidated Excel file with per-state emission values.
 
----
-
-## ⚙️ Analysis Workflow
-
-```mermaid
-graph TD
-    subgraph IN ["🛰️ Input Data (GEE Assets)"]
-        A1["PRODES/INPE<br/>Deforestation maps"]
-        A2["DETER/INPE<br/>Fire & logging maps"]
-        A3["EBA/INPE + QCN<br/>Carbon stock maps"]
-    end
-
-    subgraph GEE ["☁️ Google Earth Engine"]
-        B["code_all_biomes_v1.js<br/><i>6 biomes · 3 disturbances · 3 gases · 7 years</i>"]
-    end
-
-    subgraph CSV ["📂 Google Drive — Results_V1/"]
-        C["98 CSV files<br/>{biome}_emission_{dist}_{gas}_{year}.csv"]
-    end
-
-    subgraph R ["📊 R — Statistical Analysis"]
-        D["join_tool_v1.R<br/><i>Consolidate CSVs → Excel</i>"]
-        E["code_fig1_fig2_v1.R<br/><i>Bootstrap · BSTS · Figures</i>"]
-    end
-
-    subgraph PUB ["📄 Publication"]
-        F["Silva-Junior et al. (2026)<br/>Nature Communications"]
-    end
-
-    IN --> GEE
-    GEE --> CSV
-    CSV --> D
-    D --> E
-    E --> F
-```
 
 ---
 
