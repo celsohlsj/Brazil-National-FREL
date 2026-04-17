@@ -5,6 +5,7 @@
 ![Platform](https://img.shields.io/badge/Platform-Google%20Earth%20Engine-4285F4?logo=google&logoColor=white)
 ![Language](https://img.shields.io/badge/Language-JavaScript%20%7C%20R-f7df1e?logo=javascript&logoColor=black)
 ![Period](https://img.shields.io/badge/Analysis%20Period-2017–2023-orange)
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.3928660.svg)](http://dx.doi.org/10.5281/zenodo.3928660)
 
 <br/>
 
@@ -45,9 +46,21 @@ Greenhouse gases quantified: **CO₂**, **CH₄** (×GWP 28), and **N₂O** (×G
 
 ![Figure 1 — Brazil National FREL Emissions 2017–2023](figures/fig1_emissions_overview.svg)
 
-**Figure 1.** Annual GHG emissions from deforestation and forest degradation across all six Brazilian biomes (millions of t CO₂eq yr⁻¹). Dark red = official FREL period (2017–2021); light pink = estimated emissions (2022–2023). The horizontal line marks the Official National FREL submitted to the UNFCCC.
+**Figure 1.** Annual GHG emissions from deforestation and forest degradation across all six Brazilian biomes (millions of t CO₂eq yr⁻¹). Dark red = official FREL period (2017–2021); light pink = estimated emissions (2022–2023). The horizontal line marks the Official National FREL (673.6 Mt CO₂eq yr⁻¹) submitted to the UNFCCC.
 
 </div>
+
+### Emissions vs. Official National FREL — post-baseline years
+
+| Year | Emissions (Mt CO₂eq) | Δ vs. FREL (Mt CO₂eq) | Δ vs. FREL (%) |
+|:----:|---------------------:|----------------------:|---------------:|
+| 2022 | 920.0 | **+246.4** | **+36.6 %** |
+| 2023 | 656.9 | **−16.6** | **−2.5 %** |
+
+> FREL baseline = 673.6 Mt CO₂eq yr⁻¹ (average 2017–2021). Positive Δ = emissions **above** the reference level; negative Δ = emissions **below** the reference level.
+
+> [!NOTE]
+> The chart (`figures/fig1_emissions_overview.svg`) is **auto-regenerated** by GitHub Actions whenever [`data/fig1_data.csv`](data/fig1_data.csv) is updated and pushed. To add a new year, append a row to that CSV and push — no manual editing of the figure required.
 
 ---
 
@@ -90,18 +103,26 @@ Brazil's six biomes are modelled individually, each with its own carbon dataset,
 ```
 Brazil-National-FREL/
 │
+├── 📂 .github/workflows/
+│   └── ⚙️  update_fig1.yml                    ← Auto-regenerates Figure 1 on CSV push
+│
 ├── 📂 codes/
 │   ├── 🌐 code_all_biomes_v1.js               ← GEE unified script (all 6 biomes)
-│   └── 📊 code_fig1_fig2_v1.R                 ← Publication figures (R)
+│   ├── 📊 code_fig1_fig2_v1.R                 ← Publication figures (R)
+│   └── 🔄 generate_fig1_svg.R                 ← Regenerates Figure 1 from data/fig1_data.csv
+│
+├── 📂 data/
+│   ├── 📝 dataset_assets_gee.txt              ← GEE asset paths for all datasets
+│   └── 📋 fig1_data.csv                       ← Figure 1 source data (editable)
+│
+├── 📂 figures/
+│   └── 🖼️  fig1_emissions_overview.svg        ← Auto-generated chart (do not edit manually)
 │
 ├── 📂 results/
 │   ├── 🔧 join_tool_(gee_export_results)_v1.R ← Consolidates CSVs → Excel
 │   └── 📂 Brazil-National-FREL-Results_V1/
 │       ├── 📋 0_brazil_national_frel_results_v1.xlsx  ← Consolidated results
 │       └── 📄 {biome}_emission_{dist}_{gas}_{year}.csv ← Raw outputs (98 files)
-│
-├── 📂 data/
-│   └── 📝 dataset_assets_gee.txt              ← GEE asset paths for all datasets
 │
 └── 📄 README.md
 ```
@@ -163,21 +184,23 @@ Each CSV contains **per-state** emission sums (t CO₂e). The `sum` column holds
 
 All data are accessed as GEE assets (no local download required):
 
-| # | Dataset | Use | GEE Asset |
-|---|---|---|---|
-| 1 | PRODES — deforestation >6.25 ha | Deforestation mask | `projects/ee-ipam/assets/REDD/prodes_brasil_2023` |
-| 2 | PRODES — deforestation <6.25 ha | Small-patch deforestation (Amazon) | `projects/ee-ipam/assets/CCAL/DATASETS/PRODES/yearly_deforestation_smaller_than_625ha_biome` |
-| 3 | Managed Forest Lands | Fire mask (Amazon) | `projects/ee-ipam/assets/Managed_Land_Brazil` |
-| 4 | Biomes boundary (IBGE 1:250k) | Spatial clip | `projects/mapbiomas-workspace/AUXILIAR/biomas_IBGE_250mil` |
-| 5 | Ancient Forest Vegetation Map | Forest mask | `projects/ee-ipam/assets/CCAL/DATASETS/UKPact_MRV/brazil_pret_vegetation_qcn_v2` |
-| 6 | Carbon AGB — Amazon (EBA/INPE, 30 m) | Carbon stock | `projects/ee-ipam/assets/CCAL/DATASETS/FREL/EBA_AB_30m` |
-| 7 | Carbon BGB — Amazon (EBA/INPE, 30 m) | Carbon stock | `projects/ee-ipam/assets/CCAL/DATASETS/FREL/EBA_BB_30m` |
-| 8 | Carbon Deadwood — Amazon (EBA/INPE, 30 m) | Carbon stock | `projects/ee-ipam/assets/CCAL/DATASETS/FREL/EBA_DW_30m` |
-| 9 | Carbon Litter — Amazon (EBA/INPE, 30 m) | Carbon stock | `projects/ee-ipam/assets/CCAL/DATASETS/FREL/EBA_LI_30m` |
-| 10 | QCN 30m — 4th National GHG Inventory | Carbon stock (all biomes) | `projects/mapbiomas-workspace/SEEG/2022/QCN/QCN_30m_BR_v2_0_1` |
-| 11 | Selective logging map — annual | Logging disturbance | `…/DeterAnoProdes_{year}_cs_disordered` |
-| 12 | Fire map — annual (Amazon) | Fire disturbance | `…/DeterAnoProdes_{year}_fire` |
-| 13 | States + Biomes boundary | Aggregation regions | `projects/ee-ipam/assets/BR_UF_Biomas` |
+| Dataset | Use |
+|---|---|
+| PRODES — deforestation >6.25 ha | Deforestation mask |
+| PRODES — deforestation <6.25 ha | Small-patch deforestation (Amazon) |
+| Managed Forest Lands | Fire mask (Amazon) |
+| Biomes boundary (IBGE 1:250k) | Spatial clip |
+| Ancient Forest Vegetation Map | Forest mask |
+| Carbon AGB — Amazon (EBA/INPE, 30 m) | Carbon stock |
+| Carbon BGB — Amazon (EBA/INPE, 30 m) | Carbon stock |
+| Carbon Deadwood — Amazon (EBA/INPE, 30 m) | Carbon stock |
+| Carbon Litter — Amazon (EBA/INPE, 30 m) | Carbon stock |
+| QCN 30m — 4th National GHG Inventory | Carbon stock (all biomes) |
+| Selective logging map — annual | Logging disturbance (Amazon) |
+| Fire map — annual | Fire disturbance (Amazon) |
+| States + Biomes boundary | Aggregation regions |
+
+> Full GEE asset paths are listed in [`data/dataset_assets_gee.txt`](data/dataset_assets_gee.txt).
 
 ---
 
