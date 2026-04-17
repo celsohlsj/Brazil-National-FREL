@@ -79,30 +79,24 @@ Brazil's six biomes are modelled individually, each with its own carbon dataset,
 Brazil-National-FREL/
 │
 ├── 📂 codes/
-│   ├── 🌐 code_all_biomes_v1.js          ← Unified script (recommended)
-│   ├── 🌳 code_amazon_v1.js              ← Amazon only
-│   ├── 🌾 code_cerrado_v1.js             ← Cerrado only
-│   ├── 💧 code_pantanal_v1.js            ← Pantanal only
-│   ├── 🌿 code_pampa_v1.js               ← Pampa only
-│   ├── 🏜️  code_caatinga_v1.js            ← Caatinga only
-│   ├── 🌲 code_atlanticforest_v1.js      ← Atlantic Forest only
-│   └── 📊 code_fig1_fig2_v1.R            ← Publication figures (R)
+│   ├── 🌐 code_all_biomes_v1.js               ← GEE unified script (all 6 biomes)
+│   └── 📊 code_fig1_fig2_v1.R                 ← Publication figures (R)
 │
 ├── 📂 results/
-│   ├── 🔧 join_tool_(gee_export_results)_v1.R   ← Consolidates CSVs → Excel
+│   ├── 🔧 join_tool_(gee_export_results)_v1.R ← Consolidates CSVs → Excel
 │   └── 📂 Brazil-National-FREL-Results_V1/
-│       ├── 📋 0_brazil_national_frel_results_v1.xlsx   ← Consolidated results
-│       └── 📄 {biome}_emission_{dist}_{gas}_{year}.csv  ← Raw outputs (98 files)
+│       ├── 📋 0_brazil_national_frel_results_v1.xlsx  ← Consolidated results
+│       └── 📄 {biome}_emission_{dist}_{gas}_{year}.csv ← Raw outputs (98 files)
 │
 ├── 📂 data/
-│   └── 📝 dataset_assets_gee.txt         ← GEE asset paths for all datasets
+│   └── 📝 dataset_assets_gee.txt              ← GEE asset paths for all datasets
 │
 └── 📄 README.md
 ```
 
 ### Script descriptions
 
-#### `codes/code_all_biomes_v1.js` — Unified GEE Script ⭐ Recommended
+#### `codes/code_all_biomes_v1.js` — Unified GEE Script
 
 Single script that processes all six biomes in one run. Configurable via a dedicated block at the top — change `START_YEAR`, `END_YEAR`, or `EXPORT_FOLDER` and the entire script adapts automatically:
 
@@ -111,15 +105,6 @@ var START_YEAR    = 2017;         // First year (inclusive)
 var END_YEAR      = 2023;         // Last year  (inclusive)
 var EXPORT_FOLDER = 'Results_V1'; // Google Drive destination
 ```
-
-#### `codes/code_amazon_v1.js` — Amazon (legacy)
-Standalone GEE script for the Amazon biome. Implements the most complex logic: three disturbance types, annual carbon stock updates (fire → selective logging → deforestation), and the EBA/INPE blended carbon map.
-
-#### `codes/code_cerrado_v1.js` — Cerrado (legacy)
-Standalone GEE script for Cerrado. Deforestation only; uses QCN carbon stocks without EBA blend; Cerrado-specific combustion fraction (0.379).
-
-#### `codes/code_pantanal_v1.js` · `code_pampa_v1.js` · `code_caatinga_v1.js` · `code_atlanticforest_v1.js` — Simple biomes (legacy)
-Standalone scripts for the four simpler biomes. Deforestation only; CO₂ only; QCN `total` band.
 
 #### `codes/code_fig1_fig2_v1.R` — Publication figures
 R script that reads the consolidated Excel file and produces:
