@@ -39,6 +39,18 @@ Greenhouse gases quantified: **CO₂**, **CH₄** (×GWP 28), and **N₂O** (×G
 
 ---
 
+## 📊 Key Results
+
+<div align="center">
+
+![Figure 1 — Brazil National FREL Emissions 2017–2023](figures/fig1_emissions_overview.svg)
+
+**Figure 1.** Annual GHG emissions from deforestation and forest degradation across all six Brazilian biomes (millions of t CO₂eq yr⁻¹). Dark red = official FREL period (2017–2021); light pink = estimated emissions (2022–2023). The horizontal line marks the Official National FREL submitted to the UNFCCC.
+
+</div>
+
+---
+
 ## 🗺️ Study Biomes
 
 Brazil's six biomes are modelled individually, each with its own carbon dataset, disturbance types, and combustion parameters:
