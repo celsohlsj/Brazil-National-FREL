@@ -52,12 +52,12 @@ Greenhouse gases quantified: **CO₂**, **CH₄** (×GWP 28), and **N₂O** (×G
 
 ### Emissions vs. Official National FREL — post-baseline years
 
-| Year | Emissions (Mt CO₂eq) | Δ vs. FREL (Mt CO₂eq) | Δ vs. FREL (%) |
-|:----:|---------------------:|----------------------:|---------------:|
-| 2022 | 920.0 | **+246.4** | **+36.6 %** |
-| 2023 | 656.9 | **−16.6** | **−2.5 %** |
+| Year | Emissions (Mt CO₂eq) | FREL − Emissions (Mt CO₂eq) | FREL − Emissions (%) |
+|:----:|---------------------:|----------------------------:|---------------------:|
+| 2022 | 920.0 | **−246.4** | **−36.6 %** |
+| 2023 | 656.9 | **+16.6** | **+2.5 %** |
 
-> FREL baseline = 673.6 Mt CO₂eq yr⁻¹ (average 2017–2021). Positive Δ = emissions **above** the reference level; negative Δ = emissions **below** the reference level.
+> FREL baseline = 673.6 Mt CO₂eq yr⁻¹ (average 2017–2021). **Positive** = emissions below the reference level (eligible for REDD+ results-based payments); **negative** = emissions exceeded the reference level.
 
 > [!NOTE]
 > The chart (`figures/fig1_emissions_overview.svg`) is **auto-regenerated** by GitHub Actions whenever [`data/fig1_data.csv`](data/fig1_data.csv) is updated and pushed. To add a new year, append a row to that CSV and push — no manual editing of the figure required.
