@@ -217,7 +217,7 @@ Emissions are computed at 30 m resolution and aggregated by state × biome.
 | GWP N₂O | **265** | IPCC AR5 (100-year) |
 | Amazon combustion fraction | **0.368** | Brazil National FREL |
 | Cerrado combustion fraction | **0.379** | Brazil National FREL |
-| CH₄ / N₂O emission ratio | **1 / 0.47** | Brazil National FREL |
+| Carbon to dry matter biomass | **1 / 0.47** ≈ 2.128 | Carbon fraction of dry biomass = 0.47 (Brazil National FREL) |
 
 ### Amazon carbon stock update order (per year)
 
