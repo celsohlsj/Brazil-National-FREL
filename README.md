@@ -64,6 +64,62 @@ Greenhouse gases quantified: **CO₂**, **CH₄** (×GWP 28), and **N₂O** (×G
 
 ---
 
+## 🖥️ System Requirements
+
+### Software dependencies
+
+| Software | Version tested | Notes |
+|---|---|---|
+| Google Earth Engine | Browser-based (2024) | Free account required: https://earthengine.google.com |
+| R | ≥ 4.3.2 | https://cran.r-project.org |
+| `ggplot2` | ≥ 3.4.0 | |
+| `gridExtra` | ≥ 2.3 | |
+| `showtext` | ≥ 0.9 | |
+| `scales` | ≥ 1.2.1 | |
+| `bsts` | ≥ 0.9.10 | |
+| `dplyr` | ≥ 1.1.0 | |
+| `openxlsx` | ≥ 4.2.5 | |
+| `readr` | ≥ 2.1.4 | |
+
+### Operating systems tested
+
+- Windows 10 (64-bit)
+- Ubuntu 22.04 LTS
+
+### Non-standard hardware
+
+No non-standard hardware is required. All GEE computations run on Google's cloud infrastructure. R scripts run on any standard desktop or laptop computer.
+
+---
+
+## ⚙️ Installation Guide
+
+### Google Earth Engine
+
+No local installation is required. GEE runs entirely in the browser.
+
+1. Register for a free GEE account at https://earthengine.google.com (approval typically takes 1–2 business days)
+2. Open the [GEE Code Editor](https://code.earthengine.google.com)
+3. Copy and paste the contents of `codes/code_all_biomes_v1.js`
+
+**Typical setup time:** < 5 minutes (after account approval).
+
+### R
+
+1. Install R (≥ 4.3.2) from https://cran.r-project.org
+2. Install all required packages by running the following in an R console:
+
+```r
+install.packages(c(
+  "ggplot2", "gridExtra", "showtext", "scales",
+  "bsts", "dplyr", "openxlsx", "readr"
+))
+```
+
+**Typical install time:** < 5 minutes on a standard desktop computer with internet connection.
+
+---
+
 ## 🗺️ Study Biomes
 
 Brazil's six biomes are modelled individually, each with its own carbon dataset, disturbance types, and combustion parameters:
@@ -146,7 +202,6 @@ R script that reads the consolidated Excel file and produces:
 
 #### `results/join_tool_(gee_export_results)_v1.R` — Results consolidator
 Reads all 98 CSV files exported by GEE, parses the filename to extract metadata (biome, disturbance, gas, year), and writes a single consolidated Excel file with per-state emission values.
-
 
 ---
 
@@ -249,6 +304,8 @@ var EXPORT_FOLDER = 'Results_V1';
 4. Click **Run** — all export tasks will appear in the **Tasks** panel
 5. Click **Run** on each task (or use the GEE batch API) to start the exports to Google Drive
 
+> **Expected run time:** GEE script: 5–15 minutes (cloud-based; may vary with server load).
+
 ### Step 2 — Consolidate results (R)
 
 ```r
@@ -257,6 +314,8 @@ source("results/join_tool_(gee_export_results)_v1.R")
 # Output: results/Brazil-National-FREL-Results_V1/0_brazil_national_frel_results_v1.xlsx
 ```
 
+> **Expected run time:** < 1 minute on a standard desktop computer.
+
 ### Step 3 — Generate publication figures (R)
 
 ```r
@@ -264,8 +323,19 @@ source("codes/code_fig1_fig2_v1.R")
 # Output: Figure 1 (bootstrap ΔE) and Figure 2 (BSTS forecast)
 ```
 
+> **Expected run time:** < 2 minutes on a standard desktop computer.
+
 > [!NOTE]
 > Required R packages: `ggplot2`, `gridExtra`, `showtext`, `scales`, `bsts`, `dplyr`, `openxlsx`, `readr`
+
+### Expected outputs
+
+Running Steps 1–3 in sequence reproduces all quantitative results reported in the manuscript, including:
+
+- Estimated GHG emissions by biome and year (2017–2023) in t CO₂eq
+- Bootstrap ΔE distributions for 2022 and 2023 (Figure 2 of the manuscript)
+- BSTS counterfactual emission forecasts for 2022 and 2023 (Figure 3 of the manuscript)
+- Consolidated Excel file with per-state emission values across all biomes and disturbance types
 
 ---
 
