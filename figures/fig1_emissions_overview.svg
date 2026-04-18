@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="560" viewBox="0 0 920 560" font-family="Arial, Helvetica, sans-serif">
+
+  <!-- Background -->
+  <rect width="920" height="560" fill="white"/>
+
+  <!-- Y-axis title: "Millions" (top-left, italic) -->
+  <text x="90" y="47" font-size="13" fill="#555" font-style="italic">Millions</text>
+
+  <!-- Y-axis rotated label -->
+  <text x="-280" y="22" transform="rotate(-90)" font-size="13" fill="#555" text-anchor="middle">tons CO₂ eq</text>
+
+  <!-- Horizontal gridlines (y=60 → 1200M, y=490 → 0M; scale = 430/1200 px/M) -->
+  <line x1="90" y1="60"  x2="660" y2="60"  stroke="#ececec" stroke-width="1"/>
+  <line x1="90" y1="132" x2="660" y2="132" stroke="#ececec" stroke-width="1"/>
+  <line x1="90" y1="203" x2="660" y2="203" stroke="#ececec" stroke-width="1"/>
+  <line x1="90" y1="275" x2="660" y2="275" stroke="#ececec" stroke-width="1"/>
+  <line x1="90" y1="347" x2="660" y2="347" stroke="#ececec" stroke-width="1"/>
+  <line x1="90" y1="418" x2="660" y2="418" stroke="#ececec" stroke-width="1"/>
+  <line x1="90" y1="490" x2="660" y2="490" stroke="#bbb"    stroke-width="1.5"/>
+
+  <!-- Y-axis tick labels -->
+  <text x="84" y="64"  font-size="12" fill="#555" text-anchor="end">1,200</text>
+  <text x="84" y="136" font-size="12" fill="#555" text-anchor="end">1,000</text>
+  <text x="84" y="207" font-size="12" fill="#555" text-anchor="end">800</text>
+  <text x="84" y="279" font-size="12" fill="#555" text-anchor="end">600</text>
+  <text x="84" y="351" font-size="12" fill="#555" text-anchor="end">400</text>
+  <text x="84" y="422" font-size="12" fill="#555" text-anchor="end">200</text>
+  <text x="84" y="494" font-size="12" fill="#555" text-anchor="end">0</text>
+
+  <!-- ═══════════════════════════════════════
+       BARS  (bar-width=57, slot=570/7≈81.4)
+       plot-left=90, plot-bottom=490
+       Bar x-left = 90 + slot*i + (slot-57)/2
+       Bar cx     = bar-x + 28.5
+       Bar h(M)   = M × 430/1200
+       Bar y      = 490 − h
+       Bar cy     = y + h/2
+       ═══════════════════════════════════════ -->
+
+  <!-- 2017 | Official FREL | 558.574 M → h=200, y=290, cx=130, cy=390 -->
+  <rect x="102" y="290" width="57" height="200" fill="#c9524a"/>
+  <text x="130" y="390" transform="rotate(-90 130 390)" font-size="13" fill="white"
+        text-anchor="middle" dominant-baseline="central">559</text>
+
+  <!-- 2018 | Official FREL | 535.565 M → h=192, y=298, cx=212, cy=394 -->
+  <rect x="184" y="298" width="57" height="192" fill="#c9524a"/>
+  <text x="212" y="394" transform="rotate(-90 212 394)" font-size="13" fill="white"
+        text-anchor="middle" dominant-baseline="central">536</text>
+
+  <!-- 2019 | Official FREL | 712.723 M → h=255, y=235, cx=293, cy=363 -->
+  <rect x="265" y="235" width="57" height="255" fill="#c9524a"/>
+  <text x="293" y="363" transform="rotate(-90 293 363)" font-size="13" fill="white"
+        text-anchor="middle" dominant-baseline="central">713</text>
+
+  <!-- 2020 | Official FREL | 728.473 M → h=261, y=229, cx=375, cy=360 -->
+  <rect x="347" y="229" width="57" height="261" fill="#c9524a"/>
+  <text x="375" y="360" transform="rotate(-90 375 360)" font-size="13" fill="white"
+        text-anchor="middle" dominant-baseline="central">728</text>
+
+  <!-- 2021 | Official FREL | 832.228 M → h=298, y=192, cx=456, cy=341 -->
+  <rect x="428" y="192" width="57" height="298" fill="#c9524a"/>
+  <text x="456" y="341" transform="rotate(-90 456 341)" font-size="13" fill="white"
+        text-anchor="middle" dominant-baseline="central">832</text>
+
+  <!-- 2022 | Estimated FREL | 920.001 M → h=330, y=160, cx=537, cy=325 -->
+  <rect x="509" y="160" width="57" height="330" fill="#f5b8b5"/>
+  <text x="537" y="325" transform="rotate(-90 537 325)" font-size="13" fill="#7a2a28"
+        text-anchor="middle" dominant-baseline="central">920</text>
+
+  <!-- 2023 | Estimated FREL | 656.934 M → h=235, y=255, cx=619, cy=373 -->
+  <rect x="591" y="255" width="57" height="235" fill="#f5b8b5"/>
+  <text x="619" y="373" transform="rotate(-90 619 373)" font-size="13" fill="#7a2a28"
+        text-anchor="middle" dominant-baseline="central">657</text>
+
+  <!-- Official National FREL line | 673.566 M → y=249 -->
+  <line x1="90" y1="249" x2="660" y2="249" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="93" y="242" font-size="13" fill="#1a1a1a" font-weight="bold">674*</text>
+
+  <!-- X-axis baseline -->
+  <line x1="90" y1="490" x2="660" y2="490" stroke="#333" stroke-width="1.5"/>
+
+  <!-- X-axis year labels -->
+  <text x="130" y="510" font-size="13" fill="#333" text-anchor="middle">2017</text>
+  <text x="212" y="510" font-size="13" fill="#333" text-anchor="middle">2018</text>
+  <text x="293" y="510" font-size="13" fill="#333" text-anchor="middle">2019</text>
+  <text x="375" y="510" font-size="13" fill="#333" text-anchor="middle">2020</text>
+  <text x="456" y="510" font-size="13" fill="#333" text-anchor="middle">2021</text>
+  <text x="537" y="510" font-size="13" fill="#333" text-anchor="middle">2022</text>
+  <text x="619" y="510" font-size="13" fill="#333" text-anchor="middle">2023</text>
+
+  <!-- Legend -->
+  <rect x="685" y="200" width="14" height="14" fill="#c9524a" rx="2"/>
+  <text x="705" y="212" font-size="12" fill="#333">Official FREL Emissions</text>
+
+  <rect x="685" y="224" width="14" height="14" fill="#f5b8b5" rx="2"/>
+  <text x="705" y="236" font-size="12" fill="#333">Estimated FREL Emissions</text>
+
+  <line x1="685" y1="258" x2="699" y2="258" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="705" y="262" font-size="12" fill="#333">Official National FREL</text>
+
+  <!-- Footnote -->
+  <text x="90" y="542" font-size="11" fill="#777">* Official National FREL = 673,566,464 t CO₂eq yr⁻¹ (reference level submitted to UNFCCC)</text>
+
+</svg>

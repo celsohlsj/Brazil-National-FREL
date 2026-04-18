@@ -1,0 +1,43 @@
+name: Regenerate Figure 1
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'data/fig1_data.csv'
+
+jobs:
+  generate-figure:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: 'release'
+          use-public-rspm: true
+
+      - name: Cache R packages
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: r-fig1-${{ runner.os }}-${{ hashFiles('codes/generate_fig1_svg.R') }}
+          restore-keys: r-fig1-${{ runner.os }}-
+
+      - name: Install R packages
+        shell: Rscript {0}
+        run: install.packages(c("pacman", "ggplot2", "svglite", "dplyr", "readr", "scales"))
+
+      - name: Generate Figure 1 SVG
+        run: Rscript codes/generate_fig1_svg.R
+
+      - name: Commit updated SVG
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add figures/fig1_emissions_overview.svg
+          git diff --staged --quiet || git commit -m "chore: auto-update Figure 1 [skip ci]"
+          git push
