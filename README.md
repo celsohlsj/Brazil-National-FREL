@@ -6,6 +6,7 @@
 ![Language](https://img.shields.io/badge/Language-JavaScript%20%7C%20R-f7df1e?logo=javascript&logoColor=black)
 ![Period](https://img.shields.io/badge/Analysis%20Period-2017–2023-orange)
 [![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.3928660.svg)](http://dx.doi.org/10.5281/zenodo.3928660)
+[![Citation Badge](https://api.juleskreuer.eu/citation-badge.php?doi=10.3389/ffgc.2023.1230734)](https://juleskreuer.eu/projekte/citation-badge/)
 
 <br/>
 
