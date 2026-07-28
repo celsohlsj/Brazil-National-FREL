@@ -24,6 +24,11 @@ data <- read_csv("data/fig1_data.csv", show_col_types = FALSE) %>%
 frel_mt      <- data$frel_Mt[1]
 frel_rounded <- round(frel_mt)
 
+# ── Dynamic y-axis (scales to the series max so no bar is ever clipped) ──
+y_max        <- max(data$emission_Mt, na.rm = TRUE)
+y_upper      <- ceiling(y_max * 1.08 / 100) * 100
+label_offset <- y_upper * 0.0224
+
 # ── Palettes ──────────────────────────────────────────────────
 fill_pal  <- c("Official" = "#c9524a", "Estimated" = "#f5b8b5")
 label_pal <- c("Official" = "white",   "Estimated" = "#7a2a28")
@@ -59,7 +64,7 @@ p <- ggplot(data, aes(x = factor(year), y = emission_Mt, fill = type)) +
   annotate(
     "text",
     x        = 0.6,
-    y        = frel_mt + 28,
+    y        = frel_mt + label_offset,
     label    = paste0(frel_rounded, "*"),
     hjust    = 0,
     size     = 3.8,
@@ -73,8 +78,8 @@ p <- ggplot(data, aes(x = factor(year), y = emission_Mt, fill = type)) +
 
   scale_y_continuous(
     name   = "Millions of t CO\u2082eq",
-    limits = c(0, 1250),
-    breaks = seq(0, 1200, 200),
+    limits = c(0, y_upper),
+    breaks = pretty_breaks(n = 6),
     labels = comma,
     expand = c(0, 0)
   ) +
