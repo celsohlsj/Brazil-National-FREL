@@ -34,10 +34,13 @@ jobs:
       - name: Generate Figure 1 SVG
         run: Rscript codes/generate_fig1_svg.R
 
-      - name: Commit updated SVG
+      - name: Update README table
+        run: Rscript codes/update_readme_table.R
+
+      - name: Commit updated SVG and README
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add figures/fig1_emissions_overview.svg
+          git add figures/fig1_emissions_overview.svg README.md
           git diff --staged --quiet || git commit -m "chore: auto-update Figure 1 [skip ci]"
           git push
