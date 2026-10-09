@@ -1,0 +1,33 @@
+R version 4.6.0 (2026-04-24)
+Platform: aarch64-apple-darwin23
+Running under: macOS Tahoe 26.5
+
+Matrix products: default
+BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: America/Belem
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] readxl_1.5.0        ragg_1.5.2          bsts_0.9.11         xts_0.14.2          zoo_1.8-15         
+ [6] BoomSpikeSlab_1.2.7 Boom_0.9.16         scales_1.4.0        gridExtra_2.3       ggplot2_4.0.3      
+
+loaded via a namespace (and not attached):
+ [1] generics_0.1.4       tidyr_1.3.2          class_7.3-23         KernSmooth_2.23-26   lattice_0.22-9      
+ [6] hms_1.1.4            magrittr_2.0.5       grid_4.6.0           RColorBrewer_1.1-3   sysfonts_0.8.9      
+[11] showtextdb_3.0       cellranger_1.1.0     e1071_1.7-17         DBI_1.3.0            purrr_1.2.2         
+[16] textshaping_1.0.5    cli_3.6.6            rlang_1.3.0          units_1.0-1          cowplot_1.2.0       
+[21] withr_3.0.2          tools_4.6.0          tzdb_0.5.0           dplyr_1.2.1          colorspace_2.1-2    
+[26] pacman_0.5.1         showtext_0.9-8       gsw_1.2-0            vctrs_0.7.3          R6_2.6.1            
+[31] colorBlindness_0.1.9 gridGraphics_0.5-1   proxy_0.4-29         lifecycle_1.0.5      classInt_0.4-11     
+[36] MASS_7.3-65          pkgconfig_2.0.3      oce_1.8-4            pillar_1.11.1        gtable_0.3.6        
+[41] data.table_1.18.4    glue_1.8.1           Rcpp_1.1.1-1.1       sf_1.1-1             systemfonts_1.3.2   
+[46] tibble_3.3.1         tidyselect_1.2.1     rstudioapi_0.18.0    farver_2.1.2         labeling_0.4.3      
+[51] readr_2.2.0          compiler_4.6.0       S7_0.2.2            
