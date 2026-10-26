@@ -8,6 +8,16 @@
 # Revision R2: figures recoloured with the Okabe-Ito colour-blind-safe palette.
 # Categorical distinctions are encoded redundantly by hue, line type and line
 # width, so that no information depends on colour discrimination alone.
+#
+# Version: 1.2 (2026-10-26)
+# Changelog:
+#   1.2 — Final summary block printed at the end of the script with the mean
+#         and 95% CI of Figures 2 and 3 together (visible after the BSTS
+#         progress bar). No change to the analysis.
+#   1.1 — Console output of the mean and 95% confidence interval for Figure 2
+#         (bootstrap dE) and Figure 3 (BSTS), in million t CO2 eq, in the
+#         format used in the manuscript text. No change to the analysis.
+#   1.0 — R2 version (Okabe-Ito palette, redundant line coding).
 # =============================================================================
 
 ## ---- Packages ---------------------------------------------------------------
@@ -86,6 +96,17 @@ theme_fig <- function() {
 
 fmt <- function(x) format(round(x), big.mark = ",", scientific = FALSE)
 
+# Mean and 95% CI in million t CO2 eq, two decimals (manuscript format)
+fmt_mt <- function(x) formatC(x / 1e6, format = "f", digits = 2, big.mark = ",")
+print_ci <- function(label, years, mean, lower, upper, n_boot) {
+  cat("\n", label, " (", format(n_boot, big.mark = ","), " bootstrap replicates; ",
+      "95% CI = 2.5th-97.5th percentiles)\n", sep = "")
+  for (i in seq_along(years)) {
+    cat(sprintf("  %d: mean = %s million t CO2 eq (95%% CI: %s to %s)\n",
+                years[i], fmt_mt(mean[i]), fmt_mt(lower[i]), fmt_mt(upper[i])))
+  }
+}
+
 
 ## ---- Data (t CO2 eq) --------------------------------------------------------
 years     <- 2017:2023
@@ -99,8 +120,8 @@ obs_years <- years[years >= 2022]
 obs_emiss <- emissions[years >= 2022]
 h         <- length(obs_years)
 
-N_BOOT_DEV  <- 1000   # Figure 2 — bootstrap deviation test
-N_BOOT_BSTS <- 1000    # Figure 3 — BSTS reconstruction
+N_BOOT_DEV  <- 10000   # Figure 2 — bootstrap deviation test
+N_BOOT_BSTS <- 10000    # Figure 3 — BSTS reconstruction
 ALPHA       <- 0.05
 
 
@@ -159,6 +180,9 @@ fig2 <- arrangeGrob(grobs = plots_f2, ncol = h)
 ggsave("Fig2.png", plot = fig2, width = 18, height = 9, units = "cm",
        dpi = DPI, device = ragg::agg_png)
 print(results)
+print_ci("Figure 2 — bootstrap dE (E_simulated-reference - E_observed)",
+         results$Year, results$MeanDiff, results$CI_lower, results$CI_upper,
+         N_BOOT_DEV)
 
 
 # =============================================================================
@@ -261,6 +285,11 @@ fig3 <- arrangeGrob(grobs = plots_f3, ncol = h)
 ggsave("Fig3.png", plot = fig3, width = 18, height = 9, units = "cm",
        dpi = DPI, device = ragg::agg_png)
 print(results_bsts_boot)
+print_ci("Figure 3 — BSTS projected emission",
+         results_bsts_boot$Year, results_bsts_boot$MeanProj,
+         results_bsts_boot$CI_lower, results_bsts_boot$CI_upper, N_BOOT_BSTS)
+cat(sprintf("  Observed: %s\n",
+            paste(obs_years, "=", fmt_mt(obs_emiss), collapse = "; ")))
 
 
 # =============================================================================
@@ -273,3 +302,21 @@ if (requireNamespace("colorBlindness", quietly = TRUE)) {
 
 # Record the computational environment (required for Code Availability)
 writeLines(capture.output(sessionInfo()), "sessionInfo.txt")
+
+# =============================================================================
+# SUMMARY — mean and 95% confidence interval of Figures 2 and 3
+# (million t CO2 eq; 95% CI = 2.5th and 97.5th percentiles of the bootstrap
+# distribution)
+# =============================================================================
+cat("\n=============================================================\n")
+cat("SUMMARY — Figures 2 and 3 (million t CO2 eq)\n")
+cat("=============================================================\n")
+print_ci("Figure 2 — bootstrap dE (E_simulated-reference - E_observed)",
+         results$Year, results$MeanDiff, results$CI_lower, results$CI_upper,
+         N_BOOT_DEV)
+print_ci("Figure 3 — BSTS projected emission",
+         results_bsts_boot$Year, results_bsts_boot$MeanProj,
+         results_bsts_boot$CI_lower, results_bsts_boot$CI_upper, N_BOOT_BSTS)
+cat(sprintf("  Observed: %s\n",
+            paste(obs_years, "=", fmt_mt(obs_emiss), collapse = "; ")))
+cat("=============================================================\n")
