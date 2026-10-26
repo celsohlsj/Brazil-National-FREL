@@ -30,8 +30,9 @@ y_upper      <- ceiling(y_max * 1.08 / 100) * 100
 label_offset <- y_upper * 0.0224
 
 # ── Palettes ──────────────────────────────────────────────────
-fill_pal  <- c("Official" = "#c9524a", "Estimated" = "#f5b8b5")
-label_pal <- c("Official" = "white",   "Estimated" = "#7a2a28")
+# Okabe-Ito colour-blind-safe palette, matching manuscript Figure 1
+fill_pal  <- c("Official" = "#0072B2", "Estimated" = "#E69F00")
+label_pal <- c("Official" = "#FFFFFF", "Estimated" = "#1A1A1A")
 
 # ── Footnote ──────────────────────────────────────────────────
 caption_text <- paste0(
@@ -56,7 +57,7 @@ p <- ggplot(data, aes(x = factor(year), y = emission_Mt, fill = type)) +
   geom_hline(
     data      = data.frame(y = frel_mt, lab = "Official National FREL"),
     aes(yintercept = y, linetype = lab),
-    color     = "#1a1a1a",
+    color     = "#000000",
     linewidth = 0.75
   ) +
 

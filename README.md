@@ -47,7 +47,7 @@ Greenhouse gases quantified: **CO₂**, **CH₄** (×GWP 28), and **N₂O** (×G
 
 ![Figure 1 — Brazil National FREL Emissions 2017–2023](figures/fig1_emissions_overview.svg)
 
-**Figure 1.** Annual GHG emissions from deforestation and forest degradation across all six Brazilian biomes (millions of t CO₂eq yr⁻¹). Dark red = official FREL period (2017–2021); light pink = estimated emissions (2022–2023). The horizontal line marks the Official National FREL (673.6 Mt CO₂eq yr⁻¹) submitted to the UNFCCC.
+**Figure 1.** Annual GHG emissions from deforestation and forest degradation across all six Brazilian biomes (millions of t CO₂eq yr⁻¹). Blue = official FREL period (2017–2021); orange = estimated emissions (2022–2023). The horizontal line marks the Official National FREL (673.6 Mt CO₂eq yr⁻¹) submitted to the UNFCCC.
 
 </div>
 
@@ -58,7 +58,6 @@ Greenhouse gases quantified: **CO₂**, **CH₄** (×GWP 28), and **N₂O** (×G
 |:----:|---------------------:|----------------------------:|---------------------:|
 | 2022 | 920.0 | **−246.4** | **−36.6 %** |
 | 2023 | 656.9 | **+16.6** | **+2.5 %** |
-| 2024 | 788.6 | **−115.1** | **−17.1 %** |
 <!-- FREL_TABLE_END -->
 
 > FREL baseline = 673.6 Mt CO₂eq yr⁻¹ (average 2017–2021). **Positive** = emissions below the reference level (eligible for REDD+ results-based payments); **negative** = emissions exceeded the reference level.
