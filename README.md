@@ -16,7 +16,7 @@
 <br/>
 
 > **Silva-Junior, C. H. L. et al. (2026)**
-> *Increased deforestation and forest degradation jeopardize Brazil's REDD+ results in 2022*
+> *Increased deforestation and forest degradation counteract Brazil's REDD+ results in 2022*
 > **Nature Communications**
 
 <br/>
@@ -35,7 +35,7 @@ The analysis follows the methodology submitted by Brazil to the **UNFCCC** and a
 |---|---|---|
 | Deforestation | `def` | All 6 biomes |
 | Forest fire | `fire` | Amazon only |
-| Unplanned selective logging | `sl` | Amazon only |
+| Disordered selective logging | `sl` | Amazon only |
 
 Greenhouse gases quantified: **CO₂**, **CH₄** (×GWP 28), and **N₂O** (×GWP 265), per IPCC AR5.
 
@@ -71,21 +71,28 @@ Greenhouse gases quantified: **CO₂**, **CH₄** (×GWP 28), and **N₂O** (×G
 
 ### Software dependencies
 
-| Software | Version tested | Notes |
+The published figures and statistics were produced with the versions below (see `codes/sessionInfo.txt` and `codes/sessionInfo_Figs1_4.txt`). Both figure scripts report at run time any difference from these versions (`check_environment()`).
+
+| Software | Version used | Used by |
 |---|---|---|
-| Google Earth Engine | Browser-based (2024) | Free account required: https://earthengine.google.com |
-| R | ≥ 4.3.2 | https://cran.r-project.org |
-| `ggplot2` | ≥ 3.4.0 | |
-| `gridExtra` | ≥ 2.3 | |
-| `showtext` | ≥ 0.9 | |
-| `scales` | ≥ 1.2.1 | |
-| `bsts` | ≥ 0.9.10 | |
-| `dplyr` | ≥ 1.1.0 | |
-| `openxlsx` | ≥ 4.2.5 | |
-| `readr` | ≥ 2.1.4 | |
+| Google Earth Engine | Browser-based (2024) | `code_all_biomes_v1.js` — free account: https://earthengine.google.com |
+| R | 4.6.0 (2026-04-24) | all R scripts — https://cran.r-project.org |
+| `bsts` | 0.9.11 (with `Boom` 0.9.16, `BoomSpikeSlab` 1.2.7) | Fig. 3 |
+| `ggplot2` | 4.0.3 | Figs. 1–4 |
+| `gridExtra` | 2.3 | Figs. 2–3 |
+| `scales` | 1.4.0 | Figs. 1–4 |
+| `ragg` | 1.5.2 | Figs. 1–4 (PNG export) |
+| `systemfonts` | 1.3.2 | Figs. 1–4 (font detection) |
+| `openxlsx` | 4.2.9 | Figs. 2–3 (Source Data export) |
+| `rstudioapi` | 0.18.0 | Figs. 1–4 (working-directory detection) |
+| `dplyr`, `readr`, `svglite` | any recent | `generate_fig1_svg.R`, `join_tool_(gee_export_results)_v1.R` |
+
+> [!NOTE]
+> Both analyses are exactly reproducible. The bootstrap test (Fig. 2) uses base R with `set.seed(42)`. The BSTS projections (Fig. 3) use the C++ Markov chain Monte Carlo sampler of `bsts`, which is seeded from the system clock unless a seed is supplied; `code_fig2_fig3_v1.1.0.R` therefore passes an explicit seed (`4200000 + replicate`) to `bsts()` and `predict()`, and two independent runs produce identical results. With other versions of `bsts`/`Boom`, the MCMC draws may differ slightly; to reproduce the published values exactly, install the versions listed above (e.g. `remotes::install_version("bsts", "0.9.11")`).
 
 ### Operating systems tested
 
+- macOS 27.0, Apple silicon (aarch64) — final figures and statistics
 - Windows 10 (64-bit)
 - Ubuntu 22.04 LTS
 
@@ -109,13 +116,13 @@ No local installation is required. GEE runs entirely in the browser.
 
 ### R
 
-1. Install R (≥ 4.3.2) from https://cran.r-project.org
-2. Install all required packages by running the following in an R console:
+1. Install R (4.6.0 used for the paper) from https://cran.r-project.org
+2. Install the required packages by running the following in an R console (the figure scripts also install any missing package automatically):
 
 ```r
 install.packages(c(
-  "ggplot2", "gridExtra", "showtext", "scales",
-  "bsts", "dplyr", "openxlsx", "readr"
+  "ggplot2", "gridExtra", "scales", "bsts", "ragg", "systemfonts",
+  "openxlsx", "rstudioapi", "dplyr", "readr", "svglite"
 ))
 ```
 
@@ -167,8 +174,14 @@ Brazil-National-FREL/
 │
 ├── 📂 codes/
 │   ├── 🌐 code_all_biomes_v1.js               ← GEE unified script (all 6 biomes)
-│   ├── 📊 code_fig1_fig2_v1.R                 ← Publication figures (R)
-│   └── 🔄 generate_fig1_svg.R                 ← Regenerates Figure 1 from data/fig1_data.csv
+│   ├── 📊 code_fig1_fig4_v1.0.1.R             ← Figs. 1 and 4 of the paper (R)
+│   ├── 📊 code_fig2_fig3_v1.1.0.R             ← Figs. 2 and 3: bootstrap and BSTS (R)
+│   ├── 📋 fig1_data.csv, fig4_data.csv        ← Input data of Figs. 1 and 4
+│   ├── 📗 Source_Data.xlsx                    ← Source Data of the paper (Figs. 1–4, Tables 1–3)
+│   ├── 🖼️  Fig1.png … Fig4.png                ← Published figures (600 dpi)
+│   ├── 🧾 sessionInfo.txt, sessionInfo_Figs1_4.txt ← R session used for the figures
+│   ├── 🔄 generate_fig1_svg.R                 ← Regenerates the README chart from data/fig1_data.csv
+│   └── 🔄 update_readme_table.R               ← Updates the README table (GitHub Actions)
 │
 ├── 📂 data/
 │   ├── 📝 dataset_assets_gee.txt              ← GEE asset paths for all datasets
@@ -198,10 +211,19 @@ var END_YEAR      = 2023;         // Last year  (inclusive)
 var EXPORT_FOLDER = 'Results_V1'; // Google Drive destination
 ```
 
-#### `codes/code_fig1_fig2_v1.R` — Publication figures
-R script that reads the consolidated Excel file and produces:
-- **Figure 1** — Bootstrap analysis of emission differences (ΔE) with 95% CI
-- **Figure 2** — Bayesian Structural Time Series (BSTS) forecast
+#### `codes/code_fig1_fig4_v1.0.1.R` — Figures 1 and 4
+Reads `fig1_data.csv` and `fig4_data.csv` (same folder) and produces:
+- **Figure 1** — Official (2017–2021) and estimated (2022–2023) emissions under the National FREL
+- **Figure 4** — Simulated modified National FREL (deforestation and degradation components)
+
+#### `codes/code_fig2_fig3_v1.1.0.R` — Figures 2 and 3
+Self-contained script (annual emissions embedded) that produces:
+- **Figure 2** — Bootstrap deviation test of emission differences (ΔE), 10,000 replicates, 95% CI
+- **Figure 3** — Bayesian Structural Time Series (BSTS) projections, 10,000 bootstrap-resampled series
+
+When `Source_Data.xlsx` is in the same folder, the script writes the summary statistics and the 10,000 replicates of each figure into its `Fig2` and `Fig3` sheets.
+
+Both scripts set the working directory to their own folder (RStudio *Source*, `source()` or `Rscript`), export PNG figures at 600 dpi, and check the R and package versions against those used for the paper.
 
 #### `results/join_tool_(gee_export_results)_v1.R` — Results consolidator
 Reads all 98 CSV files exported by GEE, parses the filename to extract metadata (biome, disturbance, gas, year), and writes a single consolidated Excel file with per-state emission values.
@@ -322,22 +344,20 @@ source("results/join_tool_(gee_export_results)_v1.R")
 ### Step 3 — Generate publication figures (R)
 
 ```r
-source("codes/code_fig1_fig2_v1.R")
-# Output: Figure 1 (bootstrap ΔE) and Figure 2 (BSTS forecast)
+source("codes/code_fig1_fig4_v1.0.1.R")   # Output: Fig1.png, Fig4.png
+source("codes/code_fig2_fig3_v1.1.0.R")   # Output: Fig2.png, Fig3.png (+ Source_Data.xlsx sheets Fig2 and Fig3)
 ```
 
-> **Expected run time:** < 2 minutes on a standard desktop computer.
-
-> [!NOTE]
-> Required R packages: `ggplot2`, `gridExtra`, `showtext`, `scales`, `bsts`, `dplyr`, `openxlsx`, `readr`
+> **Expected run time:** < 1 minute for Figs. 1 and 4; about 20–30 minutes for Figs. 2 and 3 (10,000 BSTS fits) on a standard desktop computer.
 
 ### Expected outputs
 
 Running Steps 1–3 in sequence reproduces all quantitative results reported in the manuscript, including:
 
 - Estimated GHG emissions by biome and year (2017–2023) in t CO₂eq
+- Official and estimated FREL emissions (Figure 1) and the simulated modified FREL (Figure 4)
 - Bootstrap ΔE distributions for 2022 and 2023 (Figure 2 of the manuscript)
-- BSTS counterfactual emission forecasts for 2022 and 2023 (Figure 3 of the manuscript)
+- BSTS projected emissions for 2022 and 2023 (Figure 3 of the manuscript)
 - Consolidated Excel file with per-state emission values across all biomes and disturbance types
 
 ---
@@ -349,7 +369,7 @@ If you use this code or data, please cite:
 ```bibtex
 @article{silvajunior2026,
   author  = {Silva-Junior, Celso H. L. and others},
-  title   = {Increased deforestation and forest degradation jeopardize
+  title   = {Increased deforestation and forest degradation counteract
              {Brazil's} {REDD+} results in 2022},
   journal = {Nature Communications},
   year    = {2026},

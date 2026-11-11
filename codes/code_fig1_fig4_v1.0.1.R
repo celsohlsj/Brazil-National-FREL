@@ -12,15 +12,102 @@
 # hue (not by lightness of a single hue, as in the previous version), and
 # in-bar label colour switches with fill luminance to keep WCAG contrast
 # above 4.5:1.
+#
+# Version: 1.0.1 (2026-11-11)
+# Changelog:
+#   1.0.1 — Reference R and package versions documented in the header and
+#           checked at run time (check_environment()). No change to the
+#           analysis or figures.
+#   1.0.0 — Final release for NCOMMS-25-40335B (consolidates the development
+#           versions listed below).
+# Development history (pre-1.0.0):
+#   1.2 — Working directory set automatically to the folder containing this
+#         script (RStudio, source() or Rscript); stops with a clear message if
+#         fig1_data.csv or fig4_data.csv is missing. No change to the data.
+#   1.1 — Final editorial revision (Author Checklist, NCOMMS-25-40335B): FREL
+#         value labels (674*, 729*) in plain font (no bold text in display
+#         items); figures also exported as vector PDF. No change to the data.
+#   1.0 — R2 version (Okabe-Ito palette).
+#
+# Reference computational environment (results and figures in the paper):
+#   R 4.6.0 (2026-04-24), aarch64-apple-darwin23, macOS 27.0
+#   ggplot2 4.0.3, scales 1.4.0, ragg 1.5.2, systemfonts 1.3.2, rstudioapi 0.18.0
+# The script reports any difference from these versions when it runs.
 # =============================================================================
 
 ## ---- Packages ---------------------------------------------------------------
-pkgs <- c("ggplot2", "scales", "ragg", "systemfonts")
+pkgs <- c("ggplot2", "scales", "ragg", "systemfonts", "rstudioapi")
 for (p in pkgs) if (!requireNamespace(p, quietly = TRUE)) install.packages(p)
 
 library(ggplot2)
 library(scales)
 library(ragg)
+
+## ---- Check the computational environment ------------------------------------
+# Versions used to produce the published figures. A different version is not an
+# error, but it is reported because results may change slightly.
+# Figs. 1 and 4 are deterministic: values do not depend on package versions.
+REF_R   <- "4.6.0"
+REF_PKG <- c(ggplot2 = "4.0.3", scales = "1.4.0", ragg = "1.5.2",
+             systemfonts = "1.3.2", rstudioapi = "0.18.0")
+check_environment <- function(ref_r, ref_pkg) {
+  same <- TRUE
+  if (as.character(getRversion()) != ref_r) {
+    message("R ", getRversion(), " (reference: R ", ref_r, ")"); same <- FALSE
+  }
+  for (p in names(ref_pkg)) {
+    v <- tryCatch(as.character(utils::packageVersion(p)), error = function(e) "not installed")
+    if (v != ref_pkg[[p]]) {
+      message(sprintf("%-14s %-14s (reference: %s)", p, v, ref_pkg[[p]])); same <- FALSE
+    }
+  }
+  if (same) {
+    message("Computational environment identical to the reference.")
+  } else {
+    message("Environment differs from the reference (see above). Values are unaffected; only text rendering may differ.")
+  }
+  invisible(same)
+}
+check_environment(REF_R, REF_PKG)
+
+## ---- Working directory = folder that contains this script -------------------
+# Input files (CSV, Source_Data.xlsx) and outputs (figures) live next to the
+# script, so the working directory is set automatically. Works with the
+# RStudio "Source" button, source("script.R"), Rscript, and line-by-line runs
+# in RStudio.
+set_script_dir <- function() {
+  path <- NULL
+  # 1) Rscript script.R
+  args <- commandArgs(trailingOnly = FALSE)
+  f <- sub("^--file=", "", args[grep("^--file=", args)])
+  if (length(f) == 1 && nzchar(f)) path <- f
+  # 2) source("script.R") or the RStudio "Source" button
+  if (is.null(path)) {
+    for (i in rev(seq_len(sys.nframe()))) {
+      of <- sys.frame(i)$ofile
+      if (!is.null(of)) { path <- of; break }
+    }
+  }
+  # 3) lines run interactively in RStudio
+  if (is.null(path) && requireNamespace("rstudioapi", quietly = TRUE) &&
+      rstudioapi::isAvailable()) {
+    p <- rstudioapi::getSourceEditorContext()$path
+    if (!is.null(p) && nzchar(p)) path <- p
+  }
+  if (is.null(path)) {
+    warning("Script folder not detected; using the current directory: ",
+            getwd(), call. = FALSE)
+    return(invisible(getwd()))
+  }
+  d <- dirname(normalizePath(path))
+  setwd(d)
+  message("Working directory: ", d)
+  invisible(d)
+}
+set_script_dir()
+
+for (f in c("fig1_data.csv", "fig4_data.csv"))
+  if (!file.exists(f)) stop("Input file not found next to the script: ", f, call. = FALSE)
 
 DPI <- 600
 # Plain-text Source Data. Emissions are in t CO2 eq; the figures plot millions.
@@ -98,7 +185,7 @@ fig1 <- ggplot(f1, aes(x = factor(year), y = value / M, fill = series)) +
              colour = COL_BASELINE, linewidth = 0.5) +
   annotate("text", x = 0.7, y = FREL / M, vjust = -0.6, hjust = 0,
            label = paste0(comma(round(FREL / M)), "*"),
-           colour = COL_TEXT, size = 2.6, family = FONT, fontface = "bold") +
+           colour = COL_TEXT, size = 2.6, family = FONT, fontface = "plain") +
   scale_fill_manual(values = c("Official FREL Emissions"  = COL_OFFICIAL,
                                "Estimated FREL Emissions" = COL_ESTIMATED)) +
   scale_colour_identity() +
@@ -111,6 +198,10 @@ fig1 <- ggplot(f1, aes(x = factor(year), y = value / M, fill = series)) +
 
 ggsave("Fig1.png", fig1, width = 18, height = 10, units = "cm",
        dpi = DPI, device = ragg::agg_png)
+tryCatch(ggsave("Fig1.pdf", fig1, width = 18, height = 10, units = "cm",
+                device = cairo_pdf),
+         error = function(e) message("Vector PDF not written (cairo unavailable): ",
+                                     conditionMessage(e)))
 
 
 # =============================================================================
@@ -253,7 +344,7 @@ fig4 <- ggplot() +
              colour = COL_BASELINE, linewidth = 0.5) +
   annotate("text", x = 0.7, y = FREL_MOD / M, vjust = -0.6, hjust = 0,
            label = paste0(comma(round(FREL_MOD / M)), "*"),
-           colour = COL_TEXT, size = 2.6, family = FONT, fontface = "bold") +
+           colour = COL_TEXT, size = 2.6, family = FONT, fontface = "plain") +
   # emissions series carried over from Figure 1
   geom_line(data = f4,
             aes(x = factor(year), y = series / M, group = 1,
@@ -276,6 +367,10 @@ fig4 <- ggplot() +
 
 ggsave("Fig4.png", fig4, width = 18, height = 10, units = "cm",
        dpi = DPI, device = ragg::agg_png)
+tryCatch(ggsave("Fig4.pdf", fig4, width = 18, height = 10, units = "cm",
+                device = cairo_pdf),
+         error = function(e) message("Vector PDF not written (cairo unavailable): ",
+                                     conditionMessage(e)))
 
 
 # =============================================================================
